@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="">
+        <title>Graphs</title>
+		<style></style>
+		
+
+	</head>
+<body>
+
+</body>
+</html>
+<script>
+const fs = require("fs");
+const readline = require("readline");
+
+// specify the path of the CSV file
+const path = "StudentsData.csv";
+
+// Create a read stream
+const readStream = fs.createReadStream(path);
+
+// Create a readline interface
+const readInterface = readline.createInterface({
+  input: readStream
+});
+
+// Initialize an array to store the parsed data
+const output = [];
+
+// Event handler for reading lines
+readInterface.on("line", (line) => {
+  const row = line.split(",");
+  output.push(row);
+});
+
+// Event handler for the end of file
+readInterface.on("close", () => {
+  console.log(output);
+});
+
+// Event handler for handling errors
+readInterface.on("error", (err) => {
+  console.error("Error reading the CSV file:", err);
+});
+  
+  </script>
